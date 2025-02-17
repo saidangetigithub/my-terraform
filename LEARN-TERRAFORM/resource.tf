@@ -1,7 +1,7 @@
 resource "aws_instance" "frontend" {
   ami           = "ami-0b4f379183e5706b9"
   instance_type = "t3.micro"
-  security_groups = "openall"
+  security_groups = [ "openall" ]
 
   tags = {
     Name = "frontend"
