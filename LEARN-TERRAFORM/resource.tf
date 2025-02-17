@@ -8,7 +8,7 @@ resource "aws_instance" "frontend" {
   }
 }
 
-resource "aws_route53_record" "www" {
+resource "aws_route53_record" "frontend" {
   zone_id = "Z10344452MLPHOKMJPS3F"
   name    = "frontend.rajasekhar72.store"
   type    = "A"
