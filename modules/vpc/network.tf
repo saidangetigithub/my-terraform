@@ -1,7 +1,7 @@
 resource "aws_vpc" "expense" {
   cidr_block = var.vpc_cidr
   tags = {
-    Name = "expensevpc"
+    Name = "expensevpc-${var.env}"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_subnet" "public" {
   availability_zone = var.azs[count.index]
 
   tags = {
-    Name = var.public_subnets[count.index]
+    Name = "publicsubnets-${count.index+1}"
   }
 }
 
@@ -23,6 +23,6 @@ resource "aws_subnet" "private" {
   availability_zone = var.azs[count.index]
 
   tags = {
-    Name = "Main"
+    Name = "privatesubnets-${count.index+1}"
   }
 }
