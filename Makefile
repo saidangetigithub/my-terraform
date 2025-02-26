@@ -4,5 +4,7 @@ dev:
 	terraform apply -auto-approve -var-file=dev-env/inputs.tfvars
 
 prod:
-	rm	-rf	terraform	
+	rm -rf .terraform
+	terraform init -backend-config=prod-env/state.tfvars
+	terraform apply -auto-approve -var-file=prod-env/inputs.tfvars	
 
