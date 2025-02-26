@@ -49,7 +49,7 @@ resource "aws_nat_gateway" "ngw" {
   }
 }
 
-resource "aws_vpc_peering_connection" "foo" {
+resource "aws_vpc_peering_connection" "peer" {
   peer_owner_id = var.account_id
   peer_vpc_id   = var.default_vpc_id
   vpc_id        = aws_vpc.expense.id
@@ -57,6 +57,35 @@ resource "aws_vpc_peering_connection" "foo" {
 
   tags = {
     Name = "VPC Peering for default and expense"
+  }
+}
+
+resource "aws_route_table" "publicrt" {
+  vpc_id = aws_vpc.expense.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "publicrt"
+  }
+}
+
+resource "aws_route_table" "privatert" {
+  vpc_id = aws_vpc.expense.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.ngw.id
+  }
+  route {
+    cidr_block = var.default_vpc_id
+    vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
+  }
+  tags = {
+    Name = "privatert"
   }
 }
 
