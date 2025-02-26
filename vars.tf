@@ -7,3 +7,6 @@ variable "account_id" {
   
 }
 variable "default_vpc_id"{}
+variable "default_vpc_cidr" {
+  
+}
