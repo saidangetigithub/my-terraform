@@ -34,3 +34,9 @@ resource "aws_internet_gateway" "igw" {
     Name = "igw-${var.env}"
   }
 }
+
+resource "aws_eip" "eip" {
+  tags = {
+    Name = "forngw"
+  }
+}
