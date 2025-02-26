@@ -1,4 +1,3 @@
-
 provider "aws" {
   # Configuration options
 }
