@@ -1,3 +1,3 @@
  bucket = "sai-077"
-    key    = "expense/prod/"
+    key    = "expense/prod"
     region = "us-west-2"
