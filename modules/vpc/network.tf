@@ -103,7 +103,7 @@ resource "aws_route_table_association" "pubass" {
 
 resource "aws_route_table_association" "privass" {
   count = length(var.public_subnets)
-  subnet_id      = aws_subnet.privatae[count.index].id
+  subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.privatert.id
 }
 
