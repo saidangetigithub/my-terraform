@@ -48,3 +48,15 @@ resource "aws_nat_gateway" "ngw" {
     Name = "ngw-${var.env}"
   }
 }
+
+resource "aws_vpc_peering_connection" "foo" {
+  peer_owner_id = var.account_id
+  peer_vpc_id   = var.default_vpc_id
+  vpc_id        = aws_vpc.expense.id
+  auto_accept   = true
+
+  tags = {
+    Name = "VPC Peering for default and expense"
+  }
+}
+
