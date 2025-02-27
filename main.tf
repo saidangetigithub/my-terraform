@@ -10,6 +10,16 @@ module "vpc" {
     default_vpc_cidr = var.default_vpc_cidr
     default_route_table_id = var.default_route_table_id
       
-   
-    
+}
+
+module "public-lb" {
+    source = "./modules/ALB"
+    env = var.env
+    alb_sg_cidr = var.alb_sg_cidr
+    subnets = module.vpc.public_subnets
+    vpc_id = module.vpc.expense_id
+
+
+
+  
 }
