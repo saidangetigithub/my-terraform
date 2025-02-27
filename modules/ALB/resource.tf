@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg" {
-  name        = "sg-vpc"
+  name        = "sg-${var.env}"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = var.vpc_id
 
@@ -18,7 +18,7 @@ resource "aws_security_group" "sg" {
 
     }
   tags = {
-    Name = "sg-vpc"
+    Name = "sg-${var.env}"
   }
 }
 
