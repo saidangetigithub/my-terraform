@@ -17,7 +17,7 @@ module "public-lb" {
     env = var.env
     alb_sg_cidr = var.alb_sg_cidr
     subnets = module.vpc.public_subnets
-    vpc_id = module.vpc.vpc_id
+    vpc_id = module.vpc.expense_id
 
 
 
