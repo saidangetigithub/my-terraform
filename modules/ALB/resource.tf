@@ -24,7 +24,7 @@ resource "aws_security_group" "sg" {
 
 
 resource "aws_lb" "publb" {
-  name               = "${var.env}-lb"
+  name               = "${var.env}-publb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.sg.id]
@@ -32,13 +32,13 @@ resource "aws_lb" "publb" {
 
   
   tags = {
-    Environment = "${var.env}-lb"
+    Environment = "${var.env}-publb"
   }
 }
 
 
 resource "aws_lb" "privlb" {
-  name               = "${var.env}-lb"
+  name               = "${var.env}-privlb"
   internal           = true
   load_balancer_type = "application"
   security_groups    = [aws_security_group.sg.id]
@@ -46,6 +46,6 @@ resource "aws_lb" "privlb" {
 
   
   tags = {
-    Environment = "${var.env}-lb"
+    Environment = "${var.env}-privlb"
   }
 }
