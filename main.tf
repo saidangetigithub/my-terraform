@@ -19,7 +19,13 @@ module "public-lb" {
     subnets = module.vpc.public_subnets
     vpc_id = module.vpc.expense_id
 
+}
 
+module "private-lb" {
+    source = "./modules/ALB"
+    env = var.env
+    alb_sg_cidr = var.vpc_cidr
+    subnets = module.vpc.private_subnets
+    vpc_id = module.vpc.expense_id
 
-  
 }
