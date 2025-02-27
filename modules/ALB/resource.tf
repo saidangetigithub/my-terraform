@@ -1,5 +1,5 @@
-resource "aws_security_group" "sg" {
-  name        = "sg-${var.env}"
+resource "aws_security_group" "secg" {
+  name        = "${var.env}-sec"
   description = "Allow TLS inbound traffic and all outbound traffic"
   vpc_id      = var.vpc_id
 
@@ -18,7 +18,7 @@ resource "aws_security_group" "sg" {
 
     }
   tags = {
-    Name = "sg-${var.env}"
+    Name = "${var.env}-sec"
   }
 }
 
@@ -27,7 +27,7 @@ resource "aws_lb" "publb" {
   name               = "${var.env}-publb"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.sg.id]
+  security_groups    = [aws_security_group.secg.id]
   subnets            = var.subnets
 
   
@@ -41,7 +41,7 @@ resource "aws_lb" "privlb" {
   name               = "${var.env}-privlb"
   internal           = true
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.sg.id]
+  security_groups    = [aws_security_group.secg.id]
   subnets            = var.subnets
 
   
