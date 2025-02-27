@@ -1,4 +1,4 @@
-output "expense" {
+output "expense_id" {
   value = aws_vpc.expense.id
   
 }
