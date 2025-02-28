@@ -23,26 +23,26 @@
 # }
 
 
-resource "aws_lb" "publb" {
-  name               = "${var.env}-publb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.secg.id]
-  subnets            = var.subnets
+# resource "aws_lb" "publb" {
+#   name               = "${var.env}-publb"
+#   internal           = false
+#   load_balancer_type = "application"
+#   security_groups    = [aws_security_group.secg.id]
+#   subnets            = var.subnets
 
   
-  tags = {
-    Environment = "${var.env}-publb"
-  }
-  depends_on = [ aws_security_group.secg ]
-}
+#   tags = {
+#     Environment = "${var.env}-publb"
+#   }
+#   depends_on = [ aws_security_group.secg ]
+# }
 
 
 resource "aws_lb" "privlb" {
   name               = "${var.env}-privlb"
   internal           = true
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.secg.id]
+  security_groups    = data.aws_security_group.selected.id
   subnets            = var.subnets
 
   
