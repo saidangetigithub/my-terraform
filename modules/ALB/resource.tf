@@ -49,5 +49,5 @@ resource "aws_lb" "privlb" {
   tags = {
     Environment = "${var.env}-privlb"
   }
-  depends_on = [ aws_security_group.secg ]
+ # depends_on = [ aws_security_group.secg ]
 }
