@@ -1,26 +1,26 @@
-resource "aws_security_group" "secg" {
-  name        = "${var.env}-sec"
-  description = "Allow TLS inbound traffic and all outbound traffic"
-  vpc_id      = var.vpc_id
+# resource "aws_security_group" "secg" {
+#   name        = "openvpc"
+#   description = "Allow TLS inbound traffic and all outbound traffic"
+#   vpc_id      = var.vpc_id
 
-   ingress {
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = [var.alb_sg_cidr]
+#    ingress {
+#     from_port        = 80
+#     to_port          = 80
+#     protocol         = "tcp"
+#     cidr_blocks      = [var.alb_sg_cidr]
     
-   }
-    egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+#    }
+#     egress {
+#     from_port        = 0
+#     to_port          = 0
+#     protocol         = "-1"
+#     cidr_blocks      = ["0.0.0.0/0"]
 
-    }
-  tags = {
-    Name = "${var.env}-sec"
-  }
-}
+#     }
+#   tags = {
+#     Name = "${var.env}-sec"
+#   }
+# }
 
 
 resource "aws_lb" "publb" {
