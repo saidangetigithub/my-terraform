@@ -42,7 +42,7 @@ resource "aws_lb" "privlb" {
   name               = "${var.env}-privlb"
   internal           = true
   load_balancer_type = "application"
-  security_groups    = data.aws_security_group.selected.id
+  security_groups    = ["sg-0d812fd8a9008e39d"]
   subnets            = var.subnets
 
   
