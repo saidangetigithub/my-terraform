@@ -34,6 +34,7 @@ resource "aws_lb" "publb" {
   tags = {
     Environment = "${var.env}-publb"
   }
+  depends_on = [ aws_security_group.secg ]
 }
 
 
@@ -48,4 +49,5 @@ resource "aws_lb" "privlb" {
   tags = {
     Environment = "${var.env}-privlb"
   }
+  depends_on = [ aws_security_group.secg ]
 }
